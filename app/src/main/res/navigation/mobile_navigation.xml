@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_modeScreen">
+
+    <fragment
+        android:id="@+id/navigation_modeScreen"
+        android:name="com.example.roboticVacuum.ui.mode.ModeFragment"
+        android:label="@string/title_modeScreen"
+        tools:layout="@layout/mode_ui" />
+
+    <fragment
+        android:id="@+id/navigation_bluetooth"
+        android:name="com.example.roboticVacuum.ui.connect.BluetoothFragment"
+        android:label="@string/title_bluetooth"
+        tools:layout="@layout/camera_ui" />
+
+    <fragment
+        android:id="@+id/navigation_remocon"
+        android:name="com.example.roboticVacuum.ui.remocon.RemoconFragment"
+        android:label="@string/title_remocon"
+        tools:layout="@layout/remocon_ui" />
+</navigation>
