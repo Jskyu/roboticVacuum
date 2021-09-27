@@ -3,17 +3,18 @@
 
     <item
         android:id="@+id/navigation_modeScreen"
-        android:icon="@drawable/ic_modescreen_black_24dp"
+        android:icon="@drawable/ic_baseline_mode_24"
         android:title="@string/title_modeScreen"/>
 
     <item
         android:id="@+id/navigation_bluetooth"
-        android:icon="@drawable/ic_bluetooth_black_24dp"
+        android:icon="@drawable/ic_baseline_bluetooth_24"
         android:title="@string/title_bluetooth"/>
 
     <item
         android:id="@+id/navigation_remocon"
-        android:icon="@drawable/ic_remocon_black_24dp"
+        android:icon="@drawable/ic_baseline_remocon_24"
         android:title="@string/title_remocon"/>
+
 
 </menu>
