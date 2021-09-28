@@ -26,11 +26,11 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
-        android:id="@+id/btnRemocon1"
+        android:id="@+id/btnRemoteUp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="@string/remoconbtn1"
-        app:layout_constraintBottom_toTopOf="@+id/btnRemocon3"
+        app:layout_constraintBottom_toTopOf="@+id/btnRemoteDown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
 
     <ImageButton
-        android:id="@+id/btnRemocon2"
+        android:id="@+id/btnRemoteRight"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="83dp"
@@ -47,13 +47,13 @@
         android:contentDescription="@string/remoconbtn2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnRemocon4"
+        app:layout_constraintStart_toEndOf="@+id/btnRemoteLeft"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/right"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/btnRemocon3"
+        android:id="@+id/btnRemoteDown"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="60dp"
@@ -62,18 +62,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRemocon1"
+        app:layout_constraintTop_toBottomOf="@+id/btnRemoteUp"
         app:srcCompat="@drawable/down"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/btnRemocon4"
+        android:id="@+id/btnRemoteLeft"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="28dp"
         android:contentDescription="@string/remoconbtn4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnRemocon2"
+        app:layout_constraintEnd_toStartOf="@+id/btnRemoteRight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/left"
