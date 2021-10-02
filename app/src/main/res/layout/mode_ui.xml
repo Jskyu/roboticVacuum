@@ -8,6 +8,17 @@
     tools:context="com.example.roboticVacuum.ui.mode.ModeFragment" >
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Hello World!"
+        tools:layout_editor_absoluteX="167dp"
+        tools:layout_editor_absoluteY="356dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
         android:id="@+id/text_mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
