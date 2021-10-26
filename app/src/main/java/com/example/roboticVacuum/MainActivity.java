@@ -1,8 +1,6 @@
 package com.example.roboticVacuum;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,29 +14,17 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.roboticVacuum.databinding.ActivityMainBinding;
 import com.example.roboticVacuum.dto.CommandDTO;
 import com.example.roboticVacuum.service.BtnEventService;
+import com.example.roboticVacuum.service.PHPRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityMainBinding binding;
     private final BtnEventService btnEventService = new BtnEventService();
-    private final String url = "http://192.168.0.2/test.php";
+    private final String url = "http://192.168.0.2/test2.php";
     private ArrayList<CommandDTO> list = new ArrayList<>();
-    private TextView textView;
-    private String jsonString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,18 +57,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int id = v.getId();
+        PHPRequest jsonParse = new PHPRequest();      // AsyncTask 생성
         switch (id) {
             case R.id.btnRandom:
                 //btnRandom Click Event
                 Button btnRandom = findViewById(R.id.btnRandom);
-                textView = findViewById(R.id.textView);
-                JsonParse jsonParse = new JsonParse();      // AsyncTask 생성
                 jsonParse.execute(url);     // AsyncTask 실행
                 btnRandom.setText(String.valueOf(list.size()));
 //                btnEventService.pressedRandomButton(findViewById(id));
                 break;
             case R.id.btnCircle:
                 btnEventService.pressedCircleButton();
+                jsonParse.execute(url);
+
                 break;
             case R.id.btnWallFollowing:
                 btnEventService.pressedWallFollowingButton();
@@ -103,99 +90,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                btnEventService.pressedLeftButton(isRecording);
 //                break;
         }
-    }
-
-    //https://1d1cblog.tistory.com/133
-    public class JsonParse extends AsyncTask<String, Void, String> {
-        private String TAG = "JsonParseTest";
-
-        @Override
-        protected String doInBackground(String... strings) { // execute 의 매개변수를 받아와서 사용
-            String url = strings[0];
-            try {
-                URL serverURL = new URL(url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) serverURL.openConnection();
-
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.connect();
-
-                int responseCode = httpURLConnection.getResponseCode();
-
-                InputStream ips;
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    ips = httpURLConnection.getInputStream();
-                } else {
-                    ips = httpURLConnection.getErrorStream();
-                }
-
-                InputStreamReader isr = new InputStreamReader(ips, StandardCharsets.UTF_8);
-                BufferedReader bufferedReader = new BufferedReader(isr);
-
-                StringBuilder sb = new StringBuilder();
-                String line;
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    sb.append(line);
-                }
-
-                bufferedReader.close();
-                Log.d(TAG, sb.toString().trim());
-
-                return sb.toString().trim();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String fromDoInBackgroundString) {  // doInBackgroundString 에서 return 한 값을 받음
-            super.onPostExecute(fromDoInBackgroundString);
-
-            if (fromDoInBackgroundString == null)
-                textView.setText("error");
-            else {
-                jsonString = fromDoInBackgroundString;
-                list.clear();
-                doParse();
-                Log.d(TAG, list.get(0).getName());
-                textView.setText(list.get(0).getName());
-            }
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
-
-        private void doParse() {
-            try {
-                JSONObject jsonObject = new JSONObject(jsonString);
-                JSONArray jsonArray = jsonObject.getJSONArray("cmd_table");
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    CommandDTO commandDTO = new CommandDTO();
-
-                    JSONObject item = jsonArray.getJSONObject(i);
-                    commandDTO.setIndex(item.getLong("index"));
-                    commandDTO.setName(item.getString("name"));
-                    commandDTO.setMove(item.getInt("move"));
-
-                    list.add(commandDTO);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            for (CommandDTO dto : list) {
-                Log.d(">>", dto.toString());
-            }
-        } // JSON을 가공하여 ArrayList에 넣음
     }
 }
