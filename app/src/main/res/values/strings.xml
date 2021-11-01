@@ -2,16 +2,16 @@
     <string name="app_name">청소기 앱</string>
     <string name="title_modeScreen">Mode Screen</string>
     <string name="title_bluetooth">Bluetooth</string>
-    <string name="title_remocon">리모컨</string>
+    <string name="title_remoteController">리모컨</string>
     <string name="bluetooth">블루투스</string>
     <string name="wallFollowing">월팔로잉</string>
     <string name="wave">웨이브</string>
     <string name="circle">써클</string>
     <string name="random">랜덤</string>
     <string name="mode_screen">Mode Screen</string>
-    <string name="remocon">리모콘</string>
-    <string name="remoconbtn4">remoconBtn4</string>
-    <string name="remoconbtn3">remoconBtn3</string>
-    <string name="remoconbtn2">remoconBtn2</string>
-    <string name="remoconbtn1">remoconBtn1</string>
+    <string name="text_remoController">리모콘</string>
+    <string name="remote_btn1">RemoteUp</string>
+    <string name="remote_btn2">RemoteRight</string>
+    <string name="remote_btn3">RemoteDown</string>
+    <string name="remote_btn4">RemoteLeft</string>
 </resources>

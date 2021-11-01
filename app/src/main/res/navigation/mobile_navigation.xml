@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_remocon"
-        android:name="com.example.roboticVacuum.ui.remocon.RemoconFragment"
-        android:label="@string/title_remocon"
+        android:name="com.example.roboticVacuum.ui.remocon.RemoteFragment"
+        android:label="@string/title_remoteController"
         tools:layout="@layout/remocon_ui" />
 </navigation>

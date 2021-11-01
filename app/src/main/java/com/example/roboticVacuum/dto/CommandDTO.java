@@ -11,6 +11,7 @@ CREATE TABLE `CMD_TABLE` (
     PRIMARY KEY (`index`) USING BTREE)
 COLLATE='utf8mb4_general_ci'
 ENGINE=InnoDB;
+
  * INDEX : primary key
  * NAME : saved name
  * MOVE : up, down, right, left == 0, 1, 2, 3

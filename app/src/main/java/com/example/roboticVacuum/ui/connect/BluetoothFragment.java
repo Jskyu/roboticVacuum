@@ -4,34 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.roboticVacuum.databinding.CameraUiBinding;
+import com.example.roboticVacuum.R;
 
 public class BluetoothFragment extends Fragment {
 
-    private BluetoothViewModel bluetoothViewModel;
-    private CameraUiBinding binding;
-
+    @Nullable
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        bluetoothViewModel = new ViewModelProvider(this).get(BluetoothViewModel.class);
-
-        binding = CameraUiBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textBluetooth;
-        bluetoothViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+        return inflater.inflate(R.layout.camera_ui, container, false);
     }
 }

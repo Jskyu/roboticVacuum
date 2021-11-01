@@ -1,3 +1,4 @@
+/*
 package com.example.roboticVacuum.ui.mode;
 
 import androidx.lifecycle.LiveData;
@@ -16,4 +17,4 @@ public class ModeViewModel extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
-}
+}*/

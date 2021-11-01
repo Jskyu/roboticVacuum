@@ -1,3 +1,4 @@
+/*
 package com.example.roboticVacuum.ui.remocon;
 
 import androidx.lifecycle.LiveData;
@@ -16,4 +17,4 @@ public class RemoconViewModel extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
-}
+}*/
