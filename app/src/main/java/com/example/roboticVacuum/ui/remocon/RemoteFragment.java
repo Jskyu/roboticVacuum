@@ -1,5 +1,7 @@
 package com.example.roboticVacuum.ui.remocon;
 
+import static com.example.roboticVacuum.service.HttpService.RECORD_NAME;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,26 +45,28 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
         switch (id) {
             case R.id.btnRemoteUp:
 //                if(HttpService.IS_RECORDING) {
-                Log.i("BUTTON CLICK", HttpUrl.POST_URL + " : UP");
-                httpService.execute(HttpUrl.POST_URL.getValue(), HttpService.RECORD_NAME, Code.UP.getNumber());
+                Log.i("BUTTON CLICK ", "UP");
+//                httpService.execute(HttpUrl.POST_URL.getValue(), HttpService.RECORD_NAME, Code.UP.getNumber());
+                //저장 이름에 따라서 저장된 움직임(MOVE) 불러오는 테스트용 코드
+                httpService.execute(HttpUrl.SELECT_URL.getValue(), RECORD_NAME);
 //                }
                 break;
             case R.id.btnRemoteDown:
-                Log.i("BUTTON CLICK", HttpUrl.POST_URL + " : DOWN");
+                Log.i("BUTTON CLICK ", "DOWN");
 //                if(HttpService.IS_RECORDING) {
-                httpService.execute(HttpUrl.POST_URL.getValue(), HttpService.RECORD_NAME, Code.DOWN.getNumber());
+                httpService.execute(HttpUrl.INSERT_URL.getValue(), RECORD_NAME, Code.DOWN.getNumber());
 //                }
                 break;
             case R.id.btnRemoteRight:
-                Log.i("BUTTON CLICK", HttpUrl.POST_URL + " : RIGHT");
+                Log.i("BUTTON CLICK ", "RIGHT");
 //                if(HttpService.IS_RECORDING) {
-                httpService.execute(HttpUrl.POST_URL.getValue(), HttpService.RECORD_NAME, Code.RIGHT.getNumber());
+                httpService.execute(HttpUrl.INSERT_URL.getValue(), RECORD_NAME, Code.RIGHT.getNumber());
 //                }
                 break;
             case R.id.btnRemoteLeft:
-                Log.i("BUTTON CLICK", HttpUrl.POST_URL + " : LEFT");
+                Log.i("BUTTON CLICK ", "LEFT");
 //                if (HttpService.IS_RECORDING) {
-                httpService.execute(HttpUrl.POST_URL.getValue(), HttpService.RECORD_NAME, Code.LEFT.getNumber());
+                httpService.execute(HttpUrl.INSERT_URL.getValue(), RECORD_NAME, Code.LEFT.getNumber());
 //                }
                 break;
         }
