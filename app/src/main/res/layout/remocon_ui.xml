@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/text_remoController"
         android:textAlignment="center"
@@ -21,55 +20,100 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.023" />
+
+    <ImageButton
+        android:id="@+id/btnRemotecenter"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/remote_btn1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.526"
+        app:srcCompat="@drawable/ic_baseline_brightness_1_24" />
+
+    <ImageButton
+        android:id="@+id/btnRemoteLeft"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/remote_btn4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnRemotecenter"
+        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.526"
+        app:srcCompat="@drawable/left" />
+
+    <ImageButton
+        android:id="@+id/btnRemoteRight"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/remote_btn2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.222"
+        app:layout_constraintStart_toEndOf="@+id/btnRemotecenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.526"
+        app:srcCompat="@drawable/right" />
 
     <ImageButton
         android:id="@+id/btnRemoteUp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="@string/remote_btn1"
-        app:layout_constraintBottom_toTopOf="@+id/btnRemoteDown"
+        app:layout_constraintBottom_toTopOf="@+id/btnRemotecenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_remoteController"
+        app:layout_constraintVertical_bias="0.905"
         app:srcCompat="@drawable/up" />
-
-    <ImageButton
-        android:id="@+id/btnRemoteRight"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="83dp"
-        android:layout_marginEnd="28dp"
-        android:contentDescription="@string/remote_btn2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnRemoteLeft"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/right" />
 
     <ImageButton
         android:id="@+id/btnRemoteDown"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="60dp"
         android:contentDescription="@string/remote_btn3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRemoteUp"
+        app:layout_constraintTop_toBottomOf="@+id/btnRemotecenter"
+        app:layout_constraintVertical_bias="0.115"
         app:srcCompat="@drawable/down" />
 
-    <ImageButton
-        android:id="@+id/btnRemoteLeft"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="28dp"
-        android:contentDescription="@string/remote_btn4"
+    <EditText
+        android:id="@+id/textbox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="test_test"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnRemoteRight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.781"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/left" />
+        app:layout_constraintVertical_bias="0.956" />
+
+    <ToggleButton
+        android:id="@+id/btnToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="Off"
+        android:textOn="On"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
