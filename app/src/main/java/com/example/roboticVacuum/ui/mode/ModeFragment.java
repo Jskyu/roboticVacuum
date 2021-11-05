@@ -1,5 +1,6 @@
 package com.example.roboticVacuum.ui.mode;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,23 +31,24 @@ public class ModeFragment extends Fragment implements View.OnClickListener {
         return rootView;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
             case R.id.btnRandom:
                 //btnRandom Click Event
-                Log.i("BUTTON CLICK", "RANDOM");
+                Log.i("MODE ", "RANDOM");
 //                btnEventService.pressedRandomButton(findViewById(id));
                 break;
             case R.id.btnCircle:
-                Log.i("BUTTON CLICK", "CIRCLE");
+                Log.i("MODE ", "CIRCLE");
                 break;
             case R.id.btnWallFollowing:
-                Log.i("BUTTON CLICK", "WALL_FOLLOWING");
+                Log.i("MODE ", "WALL_FOLLOWING");
                 break;
             case R.id.btnWave:
-                Log.i("BUTTON CLICK", "WAVE");
+                Log.i("MODE ", "WAVE");
                 break;
         }
     }

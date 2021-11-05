@@ -17,6 +17,8 @@ public class BluetoothFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.camera_ui, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.mode_ui, container, false);
+        
+        return rootView;
     }
 }

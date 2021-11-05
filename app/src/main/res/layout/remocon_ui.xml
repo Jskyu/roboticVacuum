@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.023" />
 
     <ImageButton
-        android:id="@+id/btnRemotecenter"
+        android:id="@+id/btnRemoteCenter"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="@string/remote_btn1"
@@ -41,7 +41,7 @@
         android:layout_height="100dp"
         android:contentDescription="@string/remote_btn4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnRemotecenter"
+        app:layout_constraintEnd_toStartOf="@+id/btnRemoteCenter"
         app:layout_constraintHorizontal_bias="0.771"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -56,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.222"
-        app:layout_constraintStart_toEndOf="@+id/btnRemotecenter"
+        app:layout_constraintStart_toEndOf="@+id/btnRemoteCenter"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.526"
         app:srcCompat="@drawable/right" />
@@ -66,7 +66,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="@string/remote_btn1"
-        app:layout_constraintBottom_toTopOf="@+id/btnRemotecenter"
+        app:layout_constraintBottom_toTopOf="@+id/btnRemoteCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,18 +83,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRemotecenter"
+        app:layout_constraintTop_toBottomOf="@+id/btnRemoteCenter"
         app:layout_constraintVertical_bias="0.115"
         app:srcCompat="@drawable/down" />
 
     <EditText
-        android:id="@+id/textbox1"
+        android:id="@+id/txtRecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="test_test"
+        android:text="insert name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.781"
@@ -103,7 +103,7 @@
         app:layout_constraintVertical_bias="0.956" />
 
     <ToggleButton
-        android:id="@+id/btnToggle"
+        android:id="@+id/btnRecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textOff="Off"

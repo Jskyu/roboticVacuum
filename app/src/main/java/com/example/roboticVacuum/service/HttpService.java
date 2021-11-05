@@ -20,17 +20,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-개발 끝날때 삭제 합시다....
-계속 봐야되요...
-https://1d1cblog.tistory.com/133
- */
 public class HttpService extends AsyncTask<String, Void, String> {
     public static String RECORD_NAME = "test";
     public static boolean IS_RECORDING = false;
 
     @Override
-    protected String doInBackground(String... strings) { // execute 의 매개변수를 받아와서 사용
+    protected String doInBackground(String... strings) {
         String url = strings[0];
 /*
         HttpUrl.INSERT_URL query
@@ -42,7 +37,7 @@ public class HttpService extends AsyncTask<String, Void, String> {
         if (url.equals(HttpUrl.INSERT_URL.getValue())) {
             try {
                 String postData = "name=" + strings[1] + "&" + "move=" + strings[2];
-                httpConnect(url, postData);
+                this.httpConnect(url, postData);
 
                 return "POST_SUCCESS";
             } catch (IOException e) {
@@ -51,7 +46,7 @@ public class HttpService extends AsyncTask<String, Void, String> {
         } else if (url.equals(HttpUrl.SELECT_URL.getValue())) {
             String postData = "name=" + strings[1];
             try {
-                return httpConnect(url, postData);
+                return this.httpConnect(url, postData);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -60,7 +55,7 @@ public class HttpService extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String fromDoInBackgroundString) {  // doInBackgroundString 에서 return 한 값을 받음
+    protected void onPostExecute(String fromDoInBackgroundString) {
         super.onPostExecute(fromDoInBackgroundString);
         if (fromDoInBackgroundString == null) {
             Log.e("FAILED", "HTTP Connect ERROR");
