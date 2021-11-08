@@ -44,6 +44,8 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
         recordBtn = rootView.findViewById(R.id.btnRecord);
         recordBtn.setOnClickListener(this);
 
+
+
         return rootView;
     }
 
@@ -93,14 +95,13 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
             case R.id.btnRecord:
                 if (recordBtn.getText().toString().equals("On")) {
                     IS_RECORDING = true;
-                    recordNameTextView.setVisible() = false;
                     RECORD_NAME = recordNameTextView.getText().toString();
+                    recordNameTextView.setEnabled(false);
                     Log.i("RECORD ", RECORD_NAME);
                 } else if (recordBtn.getText().toString().equals("Off")) {
-                    recordNameTextView.setVisible() = true;
                     IS_RECORDING = false;
+                    recordNameTextView.setEnabled(true);
                 }
-
                 break;
         }
     }
