@@ -2,7 +2,7 @@
 
 - Build > Build Bundle(s)/APK(s) > Build APK(s) 클릭
 
--프로젝트이름 > 앱파일이음 > app > build > output > apk > debug (안스 우측 하단에 apk 파일 생성 됬다는 창에서 locate 선택하면 경로로 바로 이동)
+-프로젝트이름 > 앱파일이름 > app > build > output > apk > debug (안스 우측 하단에 apk 파일 생성 됬다는 창에서 locate 선택하면 경로로 바로 이동)
 (app-debug.apk, output-matadata.json)두개 파일 생성 됨.
 
 app-debug.apk파일을 압축해 카톡 등으로 공유
