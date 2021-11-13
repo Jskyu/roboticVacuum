@@ -15,7 +15,7 @@
         android:id="@+id/navigation_bluetooth"
         android:name="com.example.roboticVacuum.ui.connect.BluetoothFragment"
         android:label="@string/title_bluetooth"
-        tools:layout="@layout/camera_ui" />
+        tools:layout="@layout/bluetooth_ui" />
 
     <fragment
         android:id="@+id/navigation_remocon"

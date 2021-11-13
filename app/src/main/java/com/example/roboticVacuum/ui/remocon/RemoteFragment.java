@@ -44,8 +44,6 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
         recordBtn = rootView.findViewById(R.id.btnRecord);
         recordBtn.setOnClickListener(this);
 
-
-
         return rootView;
     }
 
