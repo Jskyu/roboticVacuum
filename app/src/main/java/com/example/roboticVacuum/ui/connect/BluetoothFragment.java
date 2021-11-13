@@ -73,7 +73,7 @@ public class BluetoothFragment extends Fragment {
         return rootView;
     }
 
-    private void bluetoothConnect() {
+    public void bluetoothConnect() {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter(); // 블루투스 어댑터를 디폴트 어댑터로 설정
         if (bluetoothAdapter == null) { // 디바이스가 블루투스를 지원하지 않을 때
             // 여기에 처리 할 코드를 작성하세요.
@@ -239,7 +239,7 @@ public class BluetoothFragment extends Fragment {
         workerThread.start();
     }
 
-    void sendData(String text) {
+    public void sendData(String text) {
         // 문자열에 개행문자("\n")를 추가해줍니다.
         text += "\n";
         Log.d("BT", "OUTPUT DATA : " + text);

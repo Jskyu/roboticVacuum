@@ -12,9 +12,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.roboticVacuum.R;
+import com.example.roboticVacuum.dto.Code;
+import com.example.roboticVacuum.ui.connect.BluetoothFragment;
 
 public class ModeFragment extends Fragment implements View.OnClickListener {
 
+    private final BluetoothFragment bt = new BluetoothFragment();
 
     @Nullable
     @Override
@@ -34,22 +37,30 @@ public class ModeFragment extends Fragment implements View.OnClickListener {
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
+        bt.bluetoothConnect();
+        Code cd = Code.FAILED;
         int id = v.getId();
         switch (id) {
             case R.id.btnRandom:
                 //btnRandom Click Event
                 Log.i("MODE ", "RANDOM");
+                cd = Code.RANDOM;
 //                btnEventService.pressedRandomButton(findViewById(id));
                 break;
             case R.id.btnCircle:
                 Log.i("MODE ", "CIRCLE");
+                cd = Code.CIRCLE;
                 break;
             case R.id.btnWallFollowing:
                 Log.i("MODE ", "WALL_FOLLOWING");
+                cd = Code.WALL_FOLLOWING;
                 break;
             case R.id.btnWave:
                 Log.i("MODE ", "WAVE");
+                cd = Code.WAVE;
                 break;
         }
+
+        bt.sendData(cd.getCode());
     }
 }
