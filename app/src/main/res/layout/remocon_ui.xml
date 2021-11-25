@@ -95,6 +95,7 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="insert name"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.781"

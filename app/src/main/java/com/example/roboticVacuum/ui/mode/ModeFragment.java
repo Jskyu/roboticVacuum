@@ -37,7 +37,7 @@ public class ModeFragment extends Fragment implements View.OnClickListener {
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        bt.bluetoothConnect();
+//        bt.bluetoothConnect();
         Code cd = Code.FAILED;
         int id = v.getId();
         switch (id) {
@@ -61,6 +61,6 @@ public class ModeFragment extends Fragment implements View.OnClickListener {
                 break;
         }
 
-        bt.sendData(cd.getCode());
+//        bt.sendData(cd.getCode());
     }
 }

@@ -4,6 +4,7 @@ import static com.example.roboticVacuum.service.HttpService.IS_RECORDING;
 import static com.example.roboticVacuum.service.HttpService.RECORD_NAME;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +35,9 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.remocon_ui, container, false);
 
+        int sdkInt = Build.VERSION.SDK_INT;
+        Log.i("VERSION", String.valueOf(sdkInt));
+
         rootView.findViewById(R.id.btnRemoteUp).setOnClickListener(this);
         rootView.findViewById(R.id.btnRemoteDown).setOnClickListener(this);
         rootView.findViewById(R.id.btnRemoteRight).setOnClickListener(this);
@@ -57,7 +61,6 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        bt.bluetoothConnect();
         Code cd = Code.FAILED;
         int id = v.getId();
         final HttpService httpService = new HttpService();      // AsyncTask 생성
