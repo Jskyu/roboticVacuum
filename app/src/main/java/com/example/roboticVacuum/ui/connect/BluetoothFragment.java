@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +40,7 @@ public class BluetoothFragment extends Fragment {
     public boolean onBT = false;
     public byte[] sendByte = new byte[4];
     private static final int REQUEST_ENABLE_BT = 1;
+    private String nowBtName = "연결되어 있지 않습니다.";
 
     Thread BTSend = new Thread(new Runnable() {
         public void run() {
@@ -52,8 +52,8 @@ public class BluetoothFragment extends Fragment {
         }
     });
 
-    private TextView btStateTextView; // 송신 할 데이터를 작성하기 위한 에딧 텍스트
-    private Button btConnect; // 송신하기 위한 버튼
+    private TextView btStateTextView; // 블루투스 현재 상태 텍스트 뷰
+    private Button btConnect; // 블루투스 연결 버튼
 
     private ViewGroup rootView;
 
@@ -64,6 +64,8 @@ public class BluetoothFragment extends Fragment {
         rootView = (ViewGroup) inflater.inflate(R.layout.bluetooth_ui, container, false);
 
         btStateTextView = rootView.findViewById(R.id.bluetoothStateTextView);
+        btStateTextView.setText(nowBtName);
+        
         btConnect = rootView.findViewById(R.id.btnSend);
 
         btConnect.setOnClickListener(v -> {
@@ -105,7 +107,8 @@ public class BluetoothFragment extends Fragment {
                 mOutputStream.close();
                 bSocket.close();
                 onBT = false;
-                btStateTextView.setText("BT OFF");
+                nowBtName = "BT OFF";
+                btStateTextView.setText(nowBtName);
             } catch (Exception ignored) {
             }
         }
@@ -123,7 +126,6 @@ public class BluetoothFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(rootView.getContext());
         builder.setTitle("블루투스 장치 선택");
 
-
         // 페어링 된 블루투스 장치의 이름 목록 작성
         List<String> listItems = mDevices.stream().map(BluetoothDevice::getName).collect(Collectors.toList());
         listItems.add("취소");    // 취소 항목 추가
@@ -137,8 +139,7 @@ public class BluetoothFragment extends Fragment {
         });
 
         builder.setCancelable(false);    // 뒤로 가기 버튼 사용 금지
-        AlertDialog alert = builder.create();
-        alert.show();
+        builder.create().show();
     }
 
     public void connectToSelectedDevice(final String selectedDeviceName) {
@@ -155,7 +156,8 @@ public class BluetoothFragment extends Fragment {
                 mOutputStream = bSocket.getOutputStream();
                 mInputStream = bSocket.getInputStream();
 
-                btStateTextView.setText(selectedDeviceName);
+                nowBtName = selectedDeviceName;
+                btStateTextView.setText(nowBtName);
                 onBT = true;
             } catch (Exception e) {
                 // 블루투스 연결 중 오류 발생
