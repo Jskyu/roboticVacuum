@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.example.roboticVacuum.R;
 import com.example.roboticVacuum.dto.Code;
 import com.example.roboticVacuum.dto.HttpUrl;
+import com.example.roboticVacuum.service.BluetoothService;
 import com.example.roboticVacuum.service.HttpService;
 import com.example.roboticVacuum.ui.connect.BluetoothFragment;
 
@@ -27,7 +28,6 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
 
     private TextView recordNameTextView;
     private Button recordBtn;
-    private final BluetoothFragment bt = new BluetoothFragment();
 
     @Nullable
     @Override
@@ -114,6 +114,6 @@ public class RemoteFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
         }
-        bt.sendData(cd.getCode());
+        BluetoothService.sendData(cd.getCode());
     }
 }

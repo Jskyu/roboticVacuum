@@ -13,11 +13,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.roboticVacuum.R;
 import com.example.roboticVacuum.dto.Code;
+import com.example.roboticVacuum.service.BluetoothService;
 import com.example.roboticVacuum.ui.connect.BluetoothFragment;
 
 public class ModeFragment extends Fragment implements View.OnClickListener {
-
-    private final BluetoothFragment bt = new BluetoothFragment();
 
     @Nullable
     @Override
@@ -60,6 +59,6 @@ public class ModeFragment extends Fragment implements View.OnClickListener {
                 break;
         }
 
-        bt.sendData(cd.getCode());
+        BluetoothService.sendData(cd.getCode());
     }
 }

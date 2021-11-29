@@ -1,9 +1,19 @@
 package com.example.roboticVacuum.ui.connect;
 
+import static com.example.roboticVacuum.service.BluetoothService.BTSend;
+import static com.example.roboticVacuum.service.BluetoothService.REQUEST_ENABLE_BT;
+import static com.example.roboticVacuum.service.BluetoothService.bSocket;
+import static com.example.roboticVacuum.service.BluetoothService.mBluetoothAdapter;
+import static com.example.roboticVacuum.service.BluetoothService.mDevices;
+import static com.example.roboticVacuum.service.BluetoothService.mInputStream;
+import static com.example.roboticVacuum.service.BluetoothService.mOutputStream;
+import static com.example.roboticVacuum.service.BluetoothService.mRemoteDevice;
+import static com.example.roboticVacuum.service.BluetoothService.onBT;
+import static com.example.roboticVacuum.service.BluetoothService.sendByte;
+
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,38 +29,26 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.roboticVacuum.R;
+import com.example.roboticVacuum.service.BluetoothService;
 
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 //참고 : https://yeolco.tistory.com/80
 public class BluetoothFragment extends Fragment {
 
-    private static final UUID uuid = java.util.UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //HC-06 UUID
-    public BluetoothAdapter mBluetoothAdapter;
-    public Set<BluetoothDevice> mDevices;
-    private BluetoothSocket bSocket;
-    private OutputStream mOutputStream;
-    private InputStream mInputStream;
-    private BluetoothDevice mRemoteDevice;
-    public boolean onBT = false;
-    public byte[] sendByte = new byte[4];
-    private static final int REQUEST_ENABLE_BT = 1;
     private String nowBtName = "연결되어 있지 않습니다.";
 
-    Thread BTSend = new Thread(new Runnable() {
-        public void run() {
-            try {
-                mOutputStream.write(sendByte);    // 프로토콜 전송
-            } catch (Exception e) {
-                // 문자열 전송 도중 오류가 발생한 경우.
-            }
-        }
-    });
+//    Thread BTSend = new Thread(new Runnable() {
+//        public void run() {
+//            try {
+//                mOutputStream.write(sendByte);    // 프로토콜 전송
+//            } catch (Exception e) {
+//                // 문자열 전송 도중 오류가 발생한 경우.
+//            }
+//        }
+//    });
 
     private TextView btStateTextView; // 블루투스 현재 상태 텍스트 뷰
     private Button btConnect; // 블루투스 연결 버튼
@@ -140,27 +138,24 @@ public class BluetoothFragment extends Fragment {
     public void connectToSelectedDevice(final String selectedDeviceName) {
         mRemoteDevice = getDeviceFromBondedList(selectedDeviceName);
 
-        Thread BTConnect = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    // 소켓 생성
-                    bSocket = mRemoteDevice.createRfcommSocketToServiceRecord(uuid);
-                    // RFCOMM 채널을 통한 연결
-                    bSocket.connect();
+        Thread BTConnect = new Thread(() -> {
+            try {
+                // 소켓 생성
+                bSocket = mRemoteDevice.createRfcommSocketToServiceRecord(BluetoothService.UUID);
+                // RFCOMM 채널을 통한 연결
+                bSocket.connect();
 
-                    // 데이터 송수신을 위한 스트림 열기
-                    mOutputStream = bSocket.getOutputStream();
-                    mInputStream = bSocket.getInputStream();
+                // 데이터 송수신을 위한 스트림 열기
+                mOutputStream = bSocket.getOutputStream();
+                mInputStream = bSocket.getInputStream();
 
-                    nowBtName = selectedDeviceName;
-                    btStateTextView.setText(nowBtName);
-                    onBT = true;
-                } catch (Exception e) {
-                    if (nowBtName == null) nowBtName = "NULL";
-                    btStateTextView.setText("ERROR " + nowBtName);
-                    // 블루투스 연결 중 오류 발생
-                }
+                nowBtName = selectedDeviceName;
+                btStateTextView.setText(nowBtName);
+                onBT = true;
+            } catch (Exception e) {
+                if (nowBtName == null) nowBtName = "NULL";
+                btStateTextView.setText("ERROR " + nowBtName);
+                // 블루투스 연결 중 오류 발생
             }
         });
         BTConnect.run();
@@ -177,17 +172,7 @@ public class BluetoothFragment extends Fragment {
         return selectedDevice;
     }
 
-    public void sendData(String text) {
-        // 문자열에 개행문자("\n")를 추가해줍니다.
-        text += "\n";
-        Log.d("BT", "OUTPUT DATA : " + text);
-        try {
-            sendByte = text.getBytes();
-            BTSend.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 /*
     public void sendBtData(int btLightPercent) throws IOException {
         //sendBuffer.order(ByteOrder.LITTLE_ENDIAN);
