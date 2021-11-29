@@ -1,6 +1,8 @@
 package com.example.roboticVacuum;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -13,7 +15,7 @@ import com.example.roboticVacuum.ui.mode.ModeFragment;
 import com.example.roboticVacuum.ui.remocon.RemoteFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private final RemoteFragment remoteFragment = new RemoteFragment();
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.i("VERSION", String.valueOf(Build.VERSION.SDK_INT));
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameLayout, modeFragment).commitAllowingStateLoss();

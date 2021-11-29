@@ -9,14 +9,12 @@ import static com.example.roboticVacuum.service.BluetoothService.mInputStream;
 import static com.example.roboticVacuum.service.BluetoothService.mOutputStream;
 import static com.example.roboticVacuum.service.BluetoothService.mRemoteDevice;
 import static com.example.roboticVacuum.service.BluetoothService.onBT;
-import static com.example.roboticVacuum.service.BluetoothService.sendByte;
 
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

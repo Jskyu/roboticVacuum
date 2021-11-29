@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import com.example.roboticVacuum.R;
 import com.example.roboticVacuum.dto.Code;
 import com.example.roboticVacuum.service.BluetoothService;
-import com.example.roboticVacuum.ui.connect.BluetoothFragment;
 
 public class ModeFragment extends Fragment implements View.OnClickListener {
 
