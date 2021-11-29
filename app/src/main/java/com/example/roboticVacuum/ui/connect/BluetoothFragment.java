@@ -65,7 +65,7 @@ public class BluetoothFragment extends Fragment {
 
         btStateTextView = rootView.findViewById(R.id.bluetoothStateTextView);
         btStateTextView.setText(nowBtName);
-        
+
         btConnect = rootView.findViewById(R.id.btnSend);
 
         btConnect.setOnClickListener(v -> {
@@ -118,17 +118,12 @@ public class BluetoothFragment extends Fragment {
         mDevices = mBluetoothAdapter.getBondedDevices();
         final int mPairedDeviceCount = mDevices.size();
 
-        if (mPairedDeviceCount == 0) {
-            //  페어링 된 장치가 없는 경우
-            Toast.makeText(rootView.getContext(), "장치를 페어링 해주세요!", Toast.LENGTH_SHORT).show();
-        }
-
         AlertDialog.Builder builder = new AlertDialog.Builder(rootView.getContext());
         builder.setTitle("블루투스 장치 선택");
 
         // 페어링 된 블루투스 장치의 이름 목록 작성
         List<String> listItems = mDevices.stream().map(BluetoothDevice::getName).collect(Collectors.toList());
-        listItems.add("취소");    // 취소 항목 추가
+        listItems.add("취소"); // 취소 항목 추가
 
         final CharSequence[] items = listItems.toArray(new CharSequence[0]);
 
@@ -145,25 +140,30 @@ public class BluetoothFragment extends Fragment {
     public void connectToSelectedDevice(final String selectedDeviceName) {
         mRemoteDevice = getDeviceFromBondedList(selectedDeviceName);
 
-        Thread BTConnect = new Thread(() -> {
-            try {
-                // 소켓 생성
-                bSocket = mRemoteDevice.createRfcommSocketToServiceRecord(uuid);
-                // RFCOMM 채널을 통한 연결
-                bSocket.connect();
+        Thread BTConnect = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // 소켓 생성
+                    bSocket = mRemoteDevice.createRfcommSocketToServiceRecord(uuid);
+                    // RFCOMM 채널을 통한 연결
+                    bSocket.connect();
 
-                // 데이터 송수신을 위한 스트림 열기
-                mOutputStream = bSocket.getOutputStream();
-                mInputStream = bSocket.getInputStream();
+                    // 데이터 송수신을 위한 스트림 열기
+                    mOutputStream = bSocket.getOutputStream();
+                    mInputStream = bSocket.getInputStream();
 
-                nowBtName = selectedDeviceName;
-                btStateTextView.setText(nowBtName);
-                onBT = true;
-            } catch (Exception e) {
-                // 블루투스 연결 중 오류 발생
+                    nowBtName = selectedDeviceName;
+                    btStateTextView.setText(nowBtName);
+                    onBT = true;
+                } catch (Exception e) {
+                    if (nowBtName == null) nowBtName = "NULL";
+                    btStateTextView.setText("ERROR " + nowBtName);
+                    // 블루투스 연결 중 오류 발생
+                }
             }
         });
-        BTConnect.start();
+        BTConnect.run();
     }
 
     public BluetoothDevice getDeviceFromBondedList(String name) {
@@ -183,7 +183,7 @@ public class BluetoothFragment extends Fragment {
         Log.d("BT", "OUTPUT DATA : " + text);
         try {
             sendByte = text.getBytes();
-            BTSend.start();
+            BTSend.run();
         } catch (Exception e) {
             e.printStackTrace();
         }
